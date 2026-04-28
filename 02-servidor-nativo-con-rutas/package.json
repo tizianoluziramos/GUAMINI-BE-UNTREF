@@ -1,0 +1,13 @@
+{
+  "name": "http_server",
+  "version": "0.0.1",
+  "description": "Servidor con el módulo nativo HTTP y rutas",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marcelo Bettini",
+  "license": "ISC"
+}
