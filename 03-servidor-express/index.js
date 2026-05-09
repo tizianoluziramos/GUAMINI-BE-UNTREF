@@ -15,9 +15,17 @@ server.get('about/', (req, res) => {
 server.get("/recipes", (req, res) => {
     res.json(data.recipes);
 });
+server.get("/recipes/:id", (req, res) => {
+    const { id } = req.params;
+    const recipe = data.recipes.find((recipe) => recipe.id === Number(id));
+    if (recipe !== undefined) {
+        res.json({ data: recipe });
+    } else {
+        res.status(404).json({ message: 'Receta no encontrada' });
+    }
+});
 
 server.get("/recipes/search", (req, res) => {
-    console.log(req.query);
     const { name, ingredient } = req.query;
     // const name = req.query.name
     //const ingredient = req.query.ingredient
