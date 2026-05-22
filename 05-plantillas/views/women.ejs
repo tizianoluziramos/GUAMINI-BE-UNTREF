@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJS | Women</title>
+</head>
+
+<body>
+    <%- include("header")%>
+
+        <ol>
+            <% women.forEach((woman)=> { %>
+                <li>
+                    <%= woman.name %>
+                        <%= woman.lastName %>
+                </li>
+                <% }) %>
+        </ol>
+        <%- include("footer") %>
+
+</body>
+
+</html>
