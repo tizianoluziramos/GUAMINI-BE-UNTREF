@@ -7,11 +7,6 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res, next) => {
     const { id } = req.params;
-    if (id === "1") {
-        const error = new Error("se produjo un error al obtener la tarea");
-        error.status = 500;
-        return next(error);
-    }
     res.status(200).json({ tarea: `Tarea ${id}` });
 });
 
