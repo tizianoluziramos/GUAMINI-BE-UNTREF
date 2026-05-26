@@ -1,9 +1,11 @@
 import express from 'express';
 import healthRouter from './src/routes/health.js';
 import tasksRouter from './src/routes/tasks.js';
+
 const PORT = process.env.PORT || 3000;
 const API_PREFIX = "/api/v1";
 const server = express();
+
 
 // health check
 server.use("/health", healthRouter);

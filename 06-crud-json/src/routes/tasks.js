@@ -1,10 +1,15 @@
 import { Router } from 'express';
 const router = Router();
+import { getAllTasks } from '../services/fileStore.js';
 
+// implementar
 router.get("/", (req, res) => {
-    res.status(200).json({ tareas: ["Tarea 1", "Tarea 2", "Tarea 3"] });
+    const tareas = getAllTasks();
+    console.log(tareas);
+
 });
 
+// implementar
 router.get("/:id", (req, res, next) => {
     const { id } = req.params;
     res.status(200).json({ tarea: `Tarea ${id}` });
