@@ -1,18 +1,32 @@
 import { Router } from 'express';
 const router = Router();
-import { getAllTasks } from '../services/fileStore.js';
+import { getAllTasks, getById } from '../services/fileStore.js';
 
-// implementar
-router.get("/", (req, res) => {
+router.get("/", (req, res, next) => {
     const tareas = getAllTasks();
-    console.log(tareas);
+    if (tareas.length === 0) {
+        const error = new Error("No se encontraron tareas");
+        error.status = 404;
+        return next(error);
+    }
+    res.json(tareas);
 
 });
 
-// implementar
+
 router.get("/:id", (req, res, next) => {
     const { id } = req.params;
-    res.status(200).json({ tarea: `Tarea ${id}` });
+    try {
+        const tarea = getById(id);
+        if (!tarea) {
+            const error = new Error("Tarea no encontrada");
+            error.status = 404;
+            return next(error);
+        }
+        res.json(tarea);
+    } catch (error) {
+        return next(error);
+    }
 });
 
 router.post("/", (req, res) => {

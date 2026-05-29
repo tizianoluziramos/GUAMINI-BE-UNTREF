@@ -11,13 +11,31 @@ let tasks = [];
 
 // Cargar tareas desde el archivo al iniciar el servidor
 function loadTasks() {
-    const jsonData = readFileSync(FILE_PATH, 'utf-8');
-    tasks = JSON.parse(jsonData);
+    try {
+        const jsonData = readFileSync(FILE_PATH, 'utf-8');
+        tasks = JSON.parse(jsonData);
+    } catch (err) {
+        if (err.code !== 'ENOENT') {
+            const error = new Error("Error al cargar tareas: " + err.message);
+            error.status = 500;
+            return next(error);
+        }
+        // Si el archivo no existe, inicializamos con un array vacío
+        save();
+    }
+}
+
+function save() {
+    writeFileSync(FILE_PATH, JSON.stringify(tasks, null, 2), 'utf-8');
 }
 
 function getAllTasks() {
     return [...tasks];
 }
+
+function getById(id) {
+    return tasks.find(task => task.id === id);
+}
 loadTasks();
 
-export { getAllTasks };
+export { getAllTasks, getById };
