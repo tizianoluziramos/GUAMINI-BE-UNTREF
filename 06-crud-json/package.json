@@ -11,6 +11,7 @@
   "author": "Marcelo Bettini",
   "license": "ISC",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "uuid-validate": "^0.0.3"
   }
 }

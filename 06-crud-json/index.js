@@ -6,8 +6,10 @@ const PORT = process.env.PORT || 3000;
 const API_PREFIX = "/api/v1";
 const server = express();
 
+// TE METI EXPRESS JSON Y QUE Y QUE Y QUE Y QUE Y QUE
+server.use(express.json());
 
-// health check
+// al pedo
 server.use("/health", healthRouter);
 
 server.use(`${API_PREFIX}/tasks`, tasksRouter);
